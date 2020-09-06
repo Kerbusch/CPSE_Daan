@@ -1,0 +1,28 @@
+#include "hwlib.hpp"
+
+extern "C" {
+   void application();
+   void print_asciz( const char * s );
+   void uart_put_char( char c );
+   char toggle_case( char c){
+      if(c >= 65 && c <=90){
+         c += 32;
+      }else if(c >= 97 && c <=122){
+         c -= 32;
+      }return c;
+   }
+};
+
+void uart_put_char( char c ){
+   hwlib::cout << c;
+}
+
+int main( void ){
+   
+   namespace target = hwlib::target;
+    
+   // wait for the PC console to start
+   hwlib::wait_ms( 2000 );
+
+   application();
+}
