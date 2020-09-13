@@ -1,0 +1,22 @@
+g++ := g++ -std=c++17
+ln := g++ -std=c++17
+rm := rm -f
+
+.PHONEY: clean
+
+build: generator.sh
+
+melody.cpp: build
+	$ ./generator.sh
+
+clean:
+	$(rm) generator.sh generator.o rtttl_player.o melody.cpp
+
+generator.sh: generator.o rtttl_player.o
+	$(g++) generator.o rtttl_player.o -o generator.sh
+
+generator.o: generator.cpp note_player.hpp rtttl_player.hpp fur_elise.hpp
+	$(g++) -c generator.cpp -o generator.o
+
+rtttl_player.o: rtttl_player.cpp rtttl_player.hpp
+	$(g++) -c rtttl_player.cpp -o rtttl_player.o
