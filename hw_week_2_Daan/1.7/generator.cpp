@@ -29,7 +29,7 @@ int main( void ){
    //HWLIB_TRACE;
 
    myfile.open("melody.cpp");
-   myfile << "class x:public melody {\npublic:\n\tvoid play( note_player & p ){\n";
+   myfile << "#include \"melody.hpp\" \n\nclass x:public melody {\npublic:\n\tvoid play( note_player & p ){\n";
 
    note_printer p;
    
@@ -41,8 +41,8 @@ int main( void ){
    if( 0 ){ rtttl_play( p, sos ); }   
    if( 0 ){ rtttl_play( p, let_it_be );  }
    if( 0 ){ rtttl_play( p, muppets );  }
-   if( 0 ){ rtttl_play( p, rickroll );  }
-   if( 1 ){ rtttl_play( p, one );  }
+   if( 1 ){ rtttl_play( p, rickroll );  }
+   if( 0 ){ rtttl_play( p, one );  }
 
    myfile << "\t}\n};";
    myfile.close();
